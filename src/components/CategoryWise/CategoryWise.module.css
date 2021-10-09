@@ -1,0 +1,13 @@
+.items_wrapper{
+  margin-bottom: 1.5rem;
+}
+
+.title{
+  margin-bottom: 0.5rem;
+}
+
+.item_grid{
+  display: flex;
+  gap:1rem;
+  flex-wrap: wrap;
+}

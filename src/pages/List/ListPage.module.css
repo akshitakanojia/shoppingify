@@ -1,0 +1,15 @@
+.back{
+  color: #F9A109;
+  display: flex;
+  text-decoration: none;
+  gap: 5px;
+  margin-bottom: 1rem;
+}
+
+.date{
+  display: flex;
+  align-items: center;
+  color: #C1C1C4;
+  font-size: 12px;
+  margin: 1.5rem 0;
+}

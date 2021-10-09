@@ -1,0 +1,25 @@
+.list_item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.item_name{
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.item_option{
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.quantity{
+  margin: 0 10px;
+}
+
+.option{
+  cursor: pointer;
+}
