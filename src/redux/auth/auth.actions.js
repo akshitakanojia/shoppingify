@@ -1,4 +1,5 @@
 import axios from "axios";
+import { clearCart } from "../cart/cart.actions";
 import authActionTypes from "./auth.types";
 
 const signupStart = () => ({
@@ -81,6 +82,7 @@ export const logoutAsync = () => {
       .catch(error => {
       })
     dispatch(logout())
+    dispatch(clearCart())
   }
 }
 
