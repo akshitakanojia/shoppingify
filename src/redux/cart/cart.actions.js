@@ -84,3 +84,7 @@ export const getList = () => {
   }
 }
 
+export const clearCart = () => ({
+  type: cartActionTypes.CLEAR_CART
+})
+
