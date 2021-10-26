@@ -30,6 +30,7 @@ const Signin = (props) => {
   useEffect(() => {
     if (token) {
       props.history.push('/')
+      window.location.reload();
     }
   }, [token])
 

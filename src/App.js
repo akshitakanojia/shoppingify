@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Switch, Route } from 'react-router';
+import { toast } from 'react-toastify';
 
 import styles from './App.module.css'
 import ProtectedRoute from './components/ProtectedRoute';
@@ -10,6 +11,8 @@ import Items from './pages/Items/Items';
 import ListPage from './pages/List/ListPage';
 import Signin from './pages/SignIn_SignUp/Signin';
 import Stats from './pages/Stats/Stats';
+
+toast.configure()
 
 function App() {
   const [showRightPanel, setShowRightPanel] = useState(false);
