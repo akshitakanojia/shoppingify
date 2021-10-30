@@ -55,7 +55,7 @@ export const saveList = (status) => {
 
     dispatch(saveListStart())
     axios({
-      url: `${process.env.REACT_APP_BACKEND_URL}/list`,
+      url: `${process.env.REACT_APP_BACKEND_URL}/lists`,
       method: 'POST',
       data: { name, items, status },
       headers: { 'Authorization': `Bearer ${getState().auth.token}` }
