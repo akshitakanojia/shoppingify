@@ -6,7 +6,7 @@ import { fetchItems } from '../../redux/item/item.actions';
 import CategoryWise from '../../components/CategoryWise/CategoryWise';
 import { getList } from '../../redux/cart/cart.actions';
 import emptyImg from '../../assets/undraw_Empty_re_opql.svg';
-import { changeState } from '../../redux/rightpanelstate/rightpanel.actions'
+import { changeState, togglePanel } from '../../redux/rightpanelstate/rightpanel.actions'
 
 const categoriseItems = (items) => items.reduce((accumulatorObject, currentObject) => {
   accumulatorObject[currentObject.category] = accumulatorObject[currentObject.category] || [];
@@ -14,7 +14,7 @@ const categoriseItems = (items) => items.reduce((accumulatorObject, currentObjec
   return accumulatorObject;
 }, Object.create(null))
 
-const Items = ({setShowRightPanel}) => {
+const Items = () => {
   const dispatch = useDispatch();
   const items = useSelector(state => state.items.items)
   const loading = useSelector(state => state.items.fetch_item_start)
@@ -46,7 +46,7 @@ const Items = ({setShowRightPanel}) => {
         :items?.length===0?
         <div className={style.empty_wrapper}>
         <img src={emptyImg} className={style.empty_img}/>
-        <button className={style.add_btn} onClick={()=>{setShowRightPanel(true);dispatch(changeState('item-form'))}}>Add Item</button>
+        <button className={style.add_btn} onClick={()=>{dispatch(togglePanel());dispatch(changeState('item-form'))}}>Add Item</button>
         </div>:
         categorisedItems && Object.entries(categorisedItems).map(([category, items]) =>
           <CategoryWise category={category} items={items} key={category}/>

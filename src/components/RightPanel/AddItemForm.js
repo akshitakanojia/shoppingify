@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import styles from './RightPanel.module.css'
 import { addItem } from '../../redux/item/item.actions'
@@ -9,6 +9,7 @@ const formInitialState = { name: '', note: '', image: '', category: '' }
 
 const AddItemForm = () => {
   const dispatch = useDispatch();
+  const {panel_state,id} = useSelector(state=>state.rightPanel)
   const [data, setData] = useState(formInitialState)
   const [errorField, setErrorField] = useState({ name: false, category: false })
 

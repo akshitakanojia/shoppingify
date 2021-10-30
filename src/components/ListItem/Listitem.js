@@ -9,7 +9,7 @@ const Listitem = ({listItem, isEditState}) => {
   return (
     <li className={styles.list_item}>
       {!isEditState&&<input type="checkbox" checked={checked} onChange={()=>dispatch(toggleCheck(item))}/>}
-      <p className={styles.item_name}>{item.name}</p>
+      <p className={`${styles.item_name} ${!isEditState&&checked?styles.strike:""}`}>{item.name}</p>
       {isEditState&&<div className={styles.item_option}>
         <span className={`material-icons-round ${styles.option}`} onClick={()=>dispatch(removeItem(item))}>remove</span>
         <span className={styles.quantity}>{quantity}</span>

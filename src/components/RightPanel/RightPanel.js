@@ -7,17 +7,21 @@ import AddItemForm from './AddItemForm'
 import { useSelector } from 'react-redux'
 import ItemDetails from './ItemDetails'
 
-const RightPanel = ({ showRightPanel }) => {
-  // const [panelState, setPanelState] = useState('list');
-  const panelState = useSelector (state=>state.rightPanel.panel_state)
+const RightPanel = () => {
+  // const [panel_state, setpanel_state] = useState('list');
+  const {panel_state,panelOpen} = useSelector (state=>state.rightPanel)
   const [isEditState, setIsEditState] = useState(true)
 
   return (
-    <div className={`${styles.right_container} ${showRightPanel ? '' : styles.hide} ${panelState === 'list' ? styles.cornsilk : panelState === 'item-view' ? styles.white : panelState === 'item-form' && styles.ghostwhite}`}>
+    <div className={`${styles.right_container} 
+                    ${panelOpen ? '' : styles.hide} 
+                    ${panel_state === 'list' ? styles.cornsilk 
+                    : panel_state === 'item-view' ? styles.white 
+                    : (panel_state === 'item-form' || panel_state === 'item-edit') && styles.ghostwhite}`}>
       {
-        panelState === 'list' ? <><Main isEditState={isEditState} setIsEditState={setIsEditState}/><Footer isEditState={isEditState}/></>
-          : panelState === 'item-view' ? <ItemDetails/>
-            : panelState === 'item-form' && <AddItemForm />
+        panel_state === 'list' ? <><Main isEditState={isEditState} setIsEditState={setIsEditState}/><Footer isEditState={isEditState}/></>
+          : panel_state === 'item-view'? <ItemDetails/>
+            : (panel_state === 'item-form' || panel_state === 'item-edit') && <AddItemForm />
       }
     </div>
   )

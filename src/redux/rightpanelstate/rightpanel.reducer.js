@@ -2,7 +2,8 @@ import rightpanelActions from "./rightpanel.types";
 
 const INITIAL_STATE = {
   panel_state : 'list',
-  id : null
+  id : null,
+  panelOpen : false
 }
 
 const rightpanelReducer = (state = INITIAL_STATE, action) => {
@@ -12,6 +13,11 @@ const rightpanelReducer = (state = INITIAL_STATE, action) => {
         ...state,
         panel_state : action.payload,
         id : action.id
+      }
+    case rightpanelActions.TOGGLE_PANEL:
+      return {
+        ...state,
+        panelOpen : !state.panelOpen
       }
     default:
       return state

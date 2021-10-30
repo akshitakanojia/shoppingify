@@ -6,9 +6,10 @@ import logo from '../../assets/logo.svg'
 import { useDispatch } from 'react-redux'
 import { logoutAsync } from '../../redux/auth/auth.actions'
 import { useSelector } from 'react-redux'
+import { togglePanel } from '../../redux/rightpanelstate/rightpanel.actions'
 
 
-const Sidenav = ({ setShowRightPanel }) => {
+const Sidenav = () => {
   const dispatch = useDispatch()
   const cartlength = useSelector(state=>state.cart.cartItems?.length)
   const handleLogout = () => {
@@ -42,7 +43,7 @@ const Sidenav = ({ setShowRightPanel }) => {
       </div>
       <div className={styles.cart_icon_wrapper}>
         <span className={`material-icons-outlined ${styles.cart_icon}`}
-          onClick={() => setShowRightPanel(prev => !prev)}>
+          onClick={() => dispatch(togglePanel())}>
           shopping_cart
         </span>
         {cartlength?cartlength>0&&<span className={styles.cart_items_number}>{cartlength}</span>:<></>}

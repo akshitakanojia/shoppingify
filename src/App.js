@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Switch, Route } from 'react-router';
 import { toast } from 'react-toastify';
 
@@ -15,24 +14,23 @@ import Stats from './pages/Stats/Stats';
 toast.configure()
 
 function App() {
-  const [showRightPanel, setShowRightPanel] = useState(false);
 
   return (
     <div className={styles.app}>
       <Switch>
         <Route path='/authorize' component={Signin} />
         <>
-          <Sidenav setShowRightPanel={setShowRightPanel} />
+          <Sidenav/>
           <div className={styles.main_wrapper}>
             <div className={styles.main}>
               <Switch>
-                <ProtectedRoute exact path='/' render={() => <Items setShowRightPanel={setShowRightPanel} />} />
+                <ProtectedRoute exact path='/' component={Items} />
                 <ProtectedRoute exact path='/history' component={History} />
                 <ProtectedRoute exact path='/history/:slug' component={ListPage} />
                 <ProtectedRoute exact path='/stats' component={Stats} />
               </Switch>
             </div>
-            <RightPanel showRightPanel={showRightPanel} />
+            <RightPanel />
           </div>
         </>
       </Switch>

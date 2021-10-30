@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux"
 
 import styles from './RightPanel.module.css'
 import { changeState } from '../../redux/rightpanelstate/rightpanel.actions'
-import { addItem } from '../../redux/cart/cart.actions'
+import { addItem,clearItem } from '../../redux/cart/cart.actions'
 
 const ItemDetails = () => {
   const id = useSelector(state => state.rightPanel.id)
@@ -32,8 +32,8 @@ const ItemDetails = () => {
           </section>}
       </div>
       <div className={styles.form_button_wrapper}>
-        <button className={`${styles.btn} ${styles.form_cancel}`}>delete</button>
-        {added ? <button className={`${styles.btn} ${styles.form_save}`} onClick={() => dispatch(addItem(item))}>Added</button>
+        <button className={`${styles.btn} ${styles.conflower_blue} ${styles.form_save}`} onClick={()=>dispatch(changeState('item-edit'))}>edit</button>
+        {added ? <button className={`${styles.btn} ${styles.form_save}`} onClick={() => dispatch(clearItem(item))}>Remove from list</button>
           : <button className={`${styles.btn} ${styles.form_save}`} onClick={() => dispatch(addItem(item))}>Add to list</button>}
       </div>
     </>
