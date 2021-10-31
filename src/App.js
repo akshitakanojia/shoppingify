@@ -8,6 +8,7 @@ import Sidenav from './components/Sidenav/Sidenav'
 import History from './pages/History/History';
 import Items from './pages/Items/Items';
 import ListPage from './pages/List/ListPage';
+import Profile from './pages/Profile/Profile';
 import Signin from './pages/SignIn_SignUp/Signin';
 import Stats from './pages/Stats/Stats';
 
@@ -20,7 +21,7 @@ function App() {
       <Switch>
         <Route path='/authorize' component={Signin} />
         <>
-          <Sidenav/>
+          <Sidenav />
           <div className={styles.main_wrapper}>
             <div className={styles.main}>
               <Switch>
@@ -28,6 +29,7 @@ function App() {
                 <ProtectedRoute exact path='/history' component={History} />
                 <ProtectedRoute exact path='/history/:slug' component={ListPage} />
                 <ProtectedRoute exact path='/stats' component={Stats} />
+                <ProtectedRoute exact path='/profile' component={Profile} />
               </Switch>
             </div>
             <RightPanel />

@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 import styles from './Sidenav.module.css'
 import logo from '../../assets/logo.svg'
@@ -11,14 +11,14 @@ import { togglePanel } from '../../redux/rightpanelstate/rightpanel.actions'
 
 const Sidenav = () => {
   const dispatch = useDispatch()
-  const cartlength = useSelector(state=>state.cart.cartItems?.length)
+  const cartlength = useSelector(state => state.cart.cartItems?.length)
   const handleLogout = () => {
     dispatch(logoutAsync())
   }
 
   return (
     <nav>
-      <div><img src={logo} alt="logo" className={styles.logo} /></div>
+      <div><Link to='/'><img src={logo} alt="logo" className={styles.logo} /></Link></div>
       <div className={styles.menu}>
         <NavLink exact to='/' activeClassName={styles.item_active} className={`${styles.link} ${styles.menu_item}`}>
           <span className="material-icons-round">
@@ -35,6 +35,11 @@ const Sidenav = () => {
             insert_chart_outlined
           </span>
         </NavLink>
+        <NavLink to='/profile' activeClassName={styles.item_active} className={`${styles.link} ${styles.menu_item}`}>
+          <span className="material-icons-outlined">
+            account_circle
+          </span>
+        </NavLink>
         <div className={`${styles.link} ${styles.menu_item}`} onClick={handleLogout}>
           <span className="material-icons-round">
             logout
@@ -46,7 +51,7 @@ const Sidenav = () => {
           onClick={() => dispatch(togglePanel())}>
           shopping_cart
         </span>
-        {cartlength?cartlength>0&&<span className={styles.cart_items_number}>{cartlength}</span>:<></>}
+        {cartlength ? cartlength > 0 && <span className={styles.cart_items_number}>{cartlength}</span> : <></>}
       </div>
     </nav>
   )

@@ -19,7 +19,7 @@ const RightPanel = () => {
                     : panel_state === 'item-view' ? styles.white 
                     : (panel_state === 'item-form' || panel_state === 'item-edit') && styles.ghostwhite}`}>
       {
-        panel_state === 'list' ? <><Main isEditState={isEditState} setIsEditState={setIsEditState}/><Footer isEditState={isEditState}/></>
+        panel_state === 'list' ? <><Main isEditState={isEditState} setIsEditState={setIsEditState}/><Footer isEditState={isEditState} setIsEditState={setIsEditState}/></>
           : panel_state === 'item-view'? <ItemDetails/>
             : (panel_state === 'item-form' || panel_state === 'item-edit') && <AddItemForm />
       }

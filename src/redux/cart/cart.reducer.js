@@ -45,7 +45,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         saveListError: false
       }
     case cartActionTypes.SAVE_LIST_SUCCESS:
-        return {
+      return {
         ...state,
         saveListStart: false,
         lists: [...state.lists, action.payload],
@@ -68,7 +68,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         getListStart: false,
-        lists: action.payload
+        lists: action.payload.reverse()
       }
     case cartActionTypes.GET_LIST_ERROR:
       return {
@@ -77,9 +77,9 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         getListError: true
       }
     case cartActionTypes.CLEAR_CART:
-      return{
+      return {
         ...state,
-        cartItems : []
+        cartItems: []
       }
     default:
       return state

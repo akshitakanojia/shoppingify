@@ -1,0 +1,17 @@
+.title{
+  margin-bottom: 1.5rem;
+}
+
+.user_info{
+  margin-bottom: 2rem;
+}
+
+.button{
+  border:none;
+  background-color: #F9A109;
+  border-radius: 2rem;
+  color: #fff;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}

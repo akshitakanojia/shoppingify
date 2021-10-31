@@ -9,20 +9,20 @@ import authReducer from "./auth/auth.reducer";
 
 
 const authConfig = {
-  key:'auth',
+  key: 'auth',
   storage,
-  whitelist:['token']
+  whitelist: ['token']
 }
 
 const cartConfig = {
-  key:'cart',
+  key: 'cart',
   storage,
-  whitelist:['name','cartItems']
+  whitelist: ['name', 'cartItems']
 }
 
 export const rootReducer = combineReducers({
   items: itemReducer,
   rightPanel: rightpanelReducer,
-  cart: persistReducer(cartConfig,cartReducer),
-  auth: persistReducer(authConfig,authReducer)
+  cart: persistReducer(cartConfig, cartReducer),
+  auth: persistReducer(authConfig, authReducer)
 })

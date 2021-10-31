@@ -7,6 +7,9 @@ const INITIAL_STATE = {
   userExist: false,
   signinStart: false,
   signinError: false,
+  user: null,
+  fetchingUser: false,
+  fetchUserError: false
 }
 
 const authReducer = (state = INITIAL_STATE, action) => {
@@ -23,7 +26,8 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         signupStart: false,
-        token: action.payload
+        token: action.payload.token,
+        user: action.payload.user
       }
     case authActionTypes.SIGN_UP_ERROR:
       return {
@@ -49,7 +53,8 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         signinStart: false,
-        token: action.payload
+        token: action.payload.token,
+        user: action.payload.user
       }
     case authActionTypes.SIGN_IN_ERROR:
       return {
@@ -64,7 +69,27 @@ const authReducer = (state = INITIAL_STATE, action) => {
         userExist: false,
         signinError: false
       }
+    case authActionTypes.FETCH_USER_START:
+      return {
+        ...state,
+        fetchingUser: true,
+        fetchUserError: false
+      }
+    case authActionTypes.FETCH_USER_SUCCESS:
+      return {
+        ...state,
+        fetchingUser: false,
+        user: action.payload
+      }
+    case authActionTypes.FETCH_USER_ERROR:
+      return {
+        ...state,
+        fetchingUser: false,
+        fetchUserError: true
+      }
     case authActionTypes.LOG_OUT:
+      return INITIAL_STATE
+    case authActionTypes.LOG_OUT_ALL:
       return INITIAL_STATE
     default:
       return state

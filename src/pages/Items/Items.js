@@ -16,10 +16,10 @@ const categoriseItems = (items) => items.reduce((accumulatorObject, currentObjec
 
 const Items = () => {
   const dispatch = useDispatch();
-  const items = useSelector(state => state.items.items)
-  const loading = useSelector(state => state.items.fetch_item_start)
-  const error = useSelector(state => state.items.fetch_item_error)
+  const { items, fetch_item_start: loading, fetch_item_error: error } = useSelector(state => state.items)
+  const [filteredItems, setFilteredItems] = useState(null)
   const [categorisedItems, setCategorisedItems] = useState(null)
+  const [searchString, setSearchString] = useState('')
 
   useEffect(() => {
     dispatch(fetchItems())
@@ -27,8 +27,21 @@ const Items = () => {
   }, [])
 
   useEffect(() => {
-    if (items) setCategorisedItems(categoriseItems(items))
-  }, [items])
+    if (items) {
+      if (searchString?.length > 0) {
+        setCategorisedItems(categoriseItems(items?.filter(item => {
+          if (item.name?.toLowerCase().includes(searchString.toLowerCase()) ||
+            item.category?.toLowerCase().includes(searchString.toLowerCase())
+
+          )
+            return item
+        })))
+      }
+      else {
+        setCategorisedItems(categoriseItems(items))
+      }
+    }
+  }, [items, searchString])
 
   return (
     <>
@@ -37,20 +50,24 @@ const Items = () => {
           <span className={style.highlight}>Shoppingify</span> allows you take your shopping list wherever you go
         </div>
         <div className={style.search}>
-          <input type="text" className={style.search_input} placeholder="search item" />
+          <input type="text"
+            value={searchString}
+            onChange={(e) => setSearchString(e.target.value)}
+            className={style.search_input}
+            placeholder="search item" />
         </div>
       </div>
       {
-        loading?<div>Fetching items...</div>
-        :error?<div>Error fetching items</div>
-        :items?.length===0?
-        <div className={style.empty_wrapper}>
-        <img src={emptyImg} className={style.empty_img}/>
-        <button className={style.add_btn} onClick={()=>{dispatch(togglePanel());dispatch(changeState('item-form'))}}>Add Item</button>
-        </div>:
-        categorisedItems && Object.entries(categorisedItems).map(([category, items]) =>
-          <CategoryWise category={category} items={items} key={category}/>
-        )
+        loading && items?.length === 0 ? <div>Fetching items...</div>
+          : error ? <div>Error fetching items</div>
+            : items?.length === 0 ?
+              <div className={style.empty_wrapper}>
+                <img src={emptyImg} className={style.empty_img} />
+                <button className={style.add_btn} onClick={() => { dispatch(togglePanel()); dispatch(changeState('item-form')) }}>Add Item</button>
+              </div> :
+              categorisedItems && Object.entries(categorisedItems).map(([category, items]) =>
+                <CategoryWise category={category} items={items} key={category} />
+              )
       }
     </>
   )
